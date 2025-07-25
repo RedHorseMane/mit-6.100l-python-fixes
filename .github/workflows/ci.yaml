@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: "Unit tests on Python ${{ matrix.python-version }}"
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false          # let 3.10-3.13 all run even if one fails
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      # If you eventually add external requirements (e.g. pytest), install them here
+      # - name: Install dependencies
+      #   run: pip install -r requirements.txt
+
+      - name: Run unittest test harness
+        run: |
+          # Verbose (-v) so you see each test; adjust path/glob as you add more
+          python -m unittest discover -s ps4b -p "FIXED_*.py" -v
+
+      - name: Report Python version (sanity check)
+        run: python -V
