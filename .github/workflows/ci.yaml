@@ -27,4 +27,4 @@ jobs:
 
       - name: Run unittest test harness
         run: |
-          python -m unittest discover -s ps4b -p "FIXED_*.py" -v
+          python -m unittest discover -s ps4bc -p "FIXED_*.py" -v
