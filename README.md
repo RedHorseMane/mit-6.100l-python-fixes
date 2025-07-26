@@ -32,9 +32,18 @@ Where to look
 ```python 
 python FIXED_test_ps4bc_student.py
 ```
-
 or, inside the folder: 
 
 ```python
 python -m unittest FIXED_test_ps4bc_student
 ```
+### Issues
+ci.yaml file returns 4 errors, e.g.:
+<pre>
+  <p>
+   4 errors<br>
+   <h4>Unit tests on Python 3.13</h4>
+   <i>No file in /home/runner/work/mit-6.100l-python-fixes/mit-6.100l-python-fixes matched to <br>
+    [~/requirements.txt or ~/pyproject.toml], make sure you have checked out the target repository.</i>
+  </p>
+</pre>
